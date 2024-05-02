@@ -23,7 +23,7 @@ jobs:
           WITH_V: true
           RELEASE_BRANCHES: main
 
-      - name: Build with Code Composer Studio IDE (Build Type: Debug)
+      - name: Build with Code Composer Studio IDE Debug Build Type
         uses: uoohyo/action-ccstudio-ide@v1.0.0
         with:
           project-path: 'action-ccstudio-ide-sample/action-28377s-cpu1'
@@ -31,7 +31,7 @@ jobs:
           build-config: 'Debug'
           components: 'PF_C28'
 
-      - name: Build with Code Composer Studio IDE (Build Type: Release)
+      - name: Build with Code Composer Studio IDE Release Build Type
         uses: uoohyo/action-ccstudio-ide@v1.0.0
         with:
           project-path: 'action-ccstudio-ide-sample/action-28377s-cpu1'
