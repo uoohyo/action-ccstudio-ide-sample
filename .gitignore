@@ -1,0 +1,42 @@
+# Code Composer Studio™ IDE Project ignores
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.dll
+*.exe
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Generated files
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# User-specific directories
+__pycache__/
+venv/
+
+# CCS ignores
+.out/
+.ccxml
+.history/
+
+# Build Configuration
+Debug/
+Release/
