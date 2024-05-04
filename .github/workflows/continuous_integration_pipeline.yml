@@ -26,7 +26,7 @@ jobs:
       - name: Build with Code Composer Studio IDE Debug Build Type
         uses: uoohyo/action-ccstudio-ide@v1.0.0
         with:
-          project-path: 'action-ccstudio-ide-sample/action-28377s-cpu1'
+          project-path: 'action-28377s-cpu1'
           project-name: 'action-28377s-cpu1'
           build-config: 'Debug'
           components: 'PF_C28'
@@ -34,7 +34,7 @@ jobs:
       - name: Build with Code Composer Studio IDE Release Build Type
         uses: uoohyo/action-ccstudio-ide@v1.0.0
         with:
-          project-path: 'action-ccstudio-ide-sample/action-28377s-cpu1'
+          project-path: 'action-28377s-cpu1'
           project-name: 'action-28377s-cpu1'
           build-config: 'Release'
           components: 'PF_C28'
@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: './action-ccstudio-ide-sample/action-28377s-cpu1/Debug/action-28377s-cpu1.out'
+          asset_path: './action-28377s-cpu1/Debug/action-28377s-cpu1.out'
           asset_name: 'action-28377s-cpu1-Debug.out'
           asset_content_type: 'application/octet-stream'
 
@@ -70,7 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: './action-ccstudio-ide-sample/action-28377s-cpu1/Release/action-28377s-cpu1.out'
+          asset_path: './action-28377s-cpu1/Release/action-28377s-cpu1.out'
           asset_name: 'action-28377s-cpu1-Release.out'
           asset_content_type: 'application/octet-stream'
           
