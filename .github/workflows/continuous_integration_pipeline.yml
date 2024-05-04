@@ -13,15 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.4
-        
-      - name: Bump version and push tag
-        id: tag_version
-        uses: anothrNick/github-tag-action@1.67.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BUMP: patch
-          WITH_V: true
-          RELEASE_BRANCHES: main
 
       - name: Build with Code Composer Studio IDE Debug Build Type
         uses: uoohyo/action-ccstudio-ide@v1.0.0
@@ -45,14 +36,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.4
+        
+      - name: Bump version and push tag
+        id: tag_version
+        uses: anothrNick/github-tag-action@1.67.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          WITH_V: true
+          RELEASE_BRANCHES: main
 
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1.14.0
         with:
-          tag: ${{ needs.build.outputs.new_tag }}
-          name: Release ${{ needs.build.outputs.new_tag }}
-          body: ${{ needs.build.outputs.changelog }}
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
 
       - name: Upload Release Asset Build Type 'Debug' Build File
         uses: actions/upload-release-asset@v1
