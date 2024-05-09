@@ -83,18 +83,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          release_id: ${{ steps.create_release.outputs.id }}
           asset_path: './Debug/action-28377s-cpu1.out'
           asset_name: 'action-28377s-cpu1-Debug.out'
-          asset_content_type: 'application/octet-stream'
 
       - name: Upload Release Asset Build Type 'Release' Build File
         uses: basefas/upload-release-asset-action@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          release_id: ${{ steps.create_release.outputs.id }}
           asset_path: './Release/action-28377s-cpu1.out'
           asset_name: 'action-28377s-cpu1-Release.out'
-          asset_content_type: 'application/octet-stream'
           
