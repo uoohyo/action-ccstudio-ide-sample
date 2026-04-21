@@ -1,6 +1,8 @@
 # action-ccstudio-ide-sample
 
-<img src="./.github/action-ccstudio-ide.jpg" width=256 height=256 />
+<!-- markdownlint-disable MD033 -->
+<img src="./.github/action-ccstudio-ide.jpg" width=256 height=256 alt="action-ccstudio-ide" />
+<!-- markdownlint-enable MD033 -->
 
 ![GitHub Release](https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide-sample?include_prereleases&logo=github)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/continuous_integration_pipeline.yml?logo=github)

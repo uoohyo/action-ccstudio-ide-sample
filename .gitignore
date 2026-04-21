@@ -1,5 +1,3 @@
-# Code Composer Studio™ IDE Project ignores
-
 # Compiled Object files
 *.slo
 *.lo
@@ -33,10 +31,30 @@ __pycache__/
 venv/
 
 # CCS ignores
+output/
+Debug/
+Debug_Master/
+Debug_Slave_01/
+Debug_Slave_02/
+Release/
+Release_Master/
+Release_Slave_01/
+Release_Slave_02/
 .out/
 .ccxml
 .history/
+.metadata/
+.clangd
 
-# Build Configuration
-Debug/
-Release/
+# targetConfigs
+**/targetConfigs/
+
+# easyDSP
+easyDSP/
+
+# IDE
+.claude/
+.jxbrowser.userdata/
+RemoteSystemsTempFiles/
+dvt/
+nul

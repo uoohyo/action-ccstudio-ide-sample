@@ -1,6 +1,8 @@
 // Include necessary headers
 #include "F28x_Project.h"
 
+//int a = 0;
+
 /**
  * main.c
  */
@@ -29,6 +31,7 @@ int main(void)
     // Infinite loop to keep the program running
     while(1)
     {
+        a += 5;
 
     }
 }
