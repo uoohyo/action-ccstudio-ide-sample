@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v6.0.2
 
       - name: Build with Code Composer Studio IDE Debug Build Type
-        uses: uoohyo/action-ccstudio-ide@v2.0.1
+        uses: uoohyo/action-ccstudio-ide@v2
         with:
           project-path: 'action-28377s-cpu1'
           project-name: 'action-28377s-cpu1'
@@ -27,7 +27,7 @@ jobs:
           build-ver: '00005'
 
       - name: Build with Code Composer Studio IDE Release Build Type
-        uses: uoohyo/action-ccstudio-ide@v2.0.1
+        uses: uoohyo/action-ccstudio-ide@v2
         with:
           project-path: 'action-28377s-cpu1'
           project-name: 'action-28377s-cpu1'
