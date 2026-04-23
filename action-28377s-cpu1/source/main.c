@@ -1,7 +1,7 @@
 // Include necessary headers
 #include "F28x_Project.h"
 
-//int a = 0;
+int a = 0;
 
 /**
  * main.c
