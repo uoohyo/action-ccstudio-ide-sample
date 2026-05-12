@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="${GITHUB_REPOSITORY:-uoohyo/action-ccstudio-ide-sample}"
-WORKFLOW_URL="https://github.com/${REPO}/actions/workflows/test-all-versions.yml"
+WORKFLOWS_URL="https://github.com/${REPO}/actions/workflows"
 
 # 테이블 헤더 생성
 TABLE=$(cat <<'EOF'
@@ -49,8 +49,9 @@ for dir in projects/f28335_v*; do
   else
     # 결과 파일이 없으면 미테스트 상태
     BADGE_URL="https://img.shields.io/badge/build-pending-yellow"
+    WORKFLOW_FILE="test-ccs-v${VERSION}.yml"
     TABLE+="
-| v${VERSION} | ![Build Status](${BADGE_URL}) | Debug, Release | - | [Workflow](${WORKFLOW_URL}) |"
+| v${VERSION} | ![Build Status](${BADGE_URL}) | Debug, Release | - | [Workflow](${WORKFLOWS_URL}/${WORKFLOW_FILE}) |"
   fi
 done
 
