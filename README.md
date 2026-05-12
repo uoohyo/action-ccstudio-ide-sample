@@ -16,8 +16,6 @@
 <!-- Test results table will be auto-generated here after workflow execution -->
 <!-- TEST_RESULTS_END -->
 
-# Multi-Version CCS Build Testing
-
 This repository provides **comprehensive compatibility testing** for the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action across all released versions.
 
 ## Purpose
