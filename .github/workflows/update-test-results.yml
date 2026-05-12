@@ -1,0 +1,63 @@
+name: Update Test Results
+
+on:
+  workflow_run:
+    workflows: ["Test CCS v*"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  update-readme:
+    name: Update README Table
+    runs-on: ubuntu-latest
+    # Only run if we haven't already run recently (avoid duplicate runs)
+    if: github.event.workflow_run.conclusion != 'skipped'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download All Test Results
+        uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          pattern: test-result-*
+          path: .github/test-results/
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: List Downloaded Results
+        run: |
+          echo "=== Downloaded test results ==="
+          if [ -d ".github/test-results" ]; then
+            ls -la .github/test-results/
+          else
+            echo "No test results found"
+            mkdir -p .github/test-results
+          fi
+
+      - name: Update README Table
+        run: |
+          chmod +x .github/scripts/update-readme-table.sh
+          bash .github/scripts/update-readme-table.sh
+
+      - name: Commit README Updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add README.md .github/test-results/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "📊 update test results table [skip ci]"
+            git push
+
+            echo "✅ README updated successfully"
+          fi
