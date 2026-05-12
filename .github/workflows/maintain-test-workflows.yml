@@ -19,6 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
+          token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: 0
 
       - name: Discover Versions from GitHub Releases
@@ -119,67 +120,25 @@ jobs:
             echo "✅ Removed: .github/workflows/test-ccs-v${version}.yml"
           done < /tmp/removed_versions.txt
 
-      - name: Calculate Summary
-        id: summary
+      - name: Commit and Push Changes
         run: |
-          NEW_COUNT=$(wc -l < /tmp/new_versions.txt)
-          REMOVED_COUNT=$(wc -l < /tmp/removed_versions.txt)
-          TOTAL_COUNT=$(ls .github/workflows/test-ccs-v*.yml 2>/dev/null | wc -l)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          echo "new_count=$NEW_COUNT" >> $GITHUB_OUTPUT
-          echo "removed_count=$REMOVED_COUNT" >> $GITHUB_OUTPUT
-          echo "total_count=$TOTAL_COUNT" >> $GITHUB_OUTPUT
+          git add .github/workflows/test-ccs-v*.yml
 
-          # Prepare lists for PR body
-          if [ -f /tmp/new_versions.txt ] && [ "$NEW_COUNT" -gt 0 ]; then
-            NEW_LIST=$(cat /tmp/new_versions.txt | sed 's/^/- v/' | head -20)
-            [ "$NEW_COUNT" -gt 20 ] && NEW_LIST="$NEW_LIST"$'\n'"... and $(($NEW_COUNT - 20)) more"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
           else
-            NEW_LIST="None"
+            NEW_COUNT=$(wc -l < /tmp/new_versions.txt)
+            REMOVED_COUNT=$(wc -l < /tmp/removed_versions.txt)
+
+            COMMIT_MSG="🤖 sync: update test workflows"
+            [ "$NEW_COUNT" -gt 0 ] && COMMIT_MSG="$COMMIT_MSG (+${NEW_COUNT})"
+            [ "$REMOVED_COUNT" -gt 0 ] && COMMIT_MSG="$COMMIT_MSG (-${REMOVED_COUNT})"
+
+            git commit -m "$COMMIT_MSG"
+            git push
+
+            echo "✅ Successfully synced $NEW_COUNT new and removed $REMOVED_COUNT old workflow files"
           fi
-
-          if [ -f /tmp/removed_versions.txt ] && [ "$REMOVED_COUNT" -gt 0 ]; then
-            REMOVED_LIST=$(cat /tmp/removed_versions.txt | sed 's/^/- v/')
-          else
-            REMOVED_LIST="None"
-          fi
-
-          # Save to files for PR body
-          echo "$NEW_LIST" > /tmp/new_list.txt
-          echo "$REMOVED_LIST" > /tmp/removed_list.txt
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "🤖 sync: update test workflows (+${{ steps.summary.outputs.new_count }} -${{ steps.summary.outputs.removed_count }})"
-          branch: auto-sync-workflows
-          delete-branch: true
-          title: "🤖 Auto-sync: Update test workflow files"
-          body: |
-            ## Auto-generated workflow sync
-
-            This PR was automatically created by `maintain-test-workflows.yml`.
-
-            ### Summary
-
-            - **Total workflow files**: ${{ steps.summary.outputs.total_count }}
-            - **New versions added**: ${{ steps.summary.outputs.new_count }}
-            - **Versions removed**: ${{ steps.summary.outputs.removed_count }}
-
-            ### New versions added
-
-            ${{ steps.summary.outputs.new_count > 0 && '```' || '' }}
-            $(cat /tmp/new_list.txt)
-            ${{ steps.summary.outputs.new_count > 0 && '```' || '' }}
-
-            ### Versions removed
-
-            ${{ steps.summary.outputs.removed_count > 0 && '```' || '' }}
-            $(cat /tmp/removed_list.txt)
-            ${{ steps.summary.outputs.removed_count > 0 && '```' || '' }}
-
-            ---
-
-            **⚠️ Review and merge this PR to activate the new test workflows.**
-
-            After merge, the next push to `main` will trigger all test workflows in parallel.
