@@ -17,7 +17,7 @@ This example is written targeting the [TMS320F28377S](https://www.ti.com/product
 
 [MIT License](./LICENSE)
 
-Copyright (c) 2024 [uoohyo](https://github.com/uoohyo)
+Copyright (c) 2024-2026 [uoohyo](https://github.com/uoohyo)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
