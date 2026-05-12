@@ -67,8 +67,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ["12.0.0.00009"]
-        config: [Debug]
+        version: ${{ fromJSON(needs.discover-and-generate.outputs.all_versions) }}
+        config: [Debug, Release]
       fail-fast: false
       max-parallel: 10
     steps:
@@ -77,29 +77,23 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: Extract Version Components
-        id: version
+      - name: Pull CCS Docker Image
         run: |
-          VERSION="${{ matrix.version }}"
-          IFS='.' read -r MAJOR MINOR PATCH BUILD <<< "$VERSION"
-          echo "major=$MAJOR" >> $GITHUB_OUTPUT
-          echo "minor=$MINOR" >> $GITHUB_OUTPUT
-          echo "patch=$PATCH" >> $GITHUB_OUTPUT
-          echo "build=$BUILD" >> $GITHUB_OUTPUT
+          docker pull uoohyo/ccstudio-ide:${{ matrix.version }}
 
-      - name: Build with CCS
+      - name: Build with CCS v${{ matrix.version }}
         id: build
-        uses: uoohyo/action-ccstudio-ide@v12.0.0.00009
         continue-on-error: true
-        with:
-          project-path: 'projects/f28335_v${{ matrix.version }}'
-          project-name: 'f28335_v${{ matrix.version }}'
-          build-config: ${{ matrix.config }}
-          components: 'PF_C28'
-          major-ver: ${{ steps.version.outputs.major }}
-          minor-ver: ${{ steps.version.outputs.minor }}
-          patch-ver: ${{ steps.version.outputs.patch }}
-          build-ver: ${{ steps.version.outputs.build }}
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/github/workspace" \
+            -e COMPONENTS="PF_C28" \
+            -e CCS_VERSION="${{ matrix.version }}" \
+            uoohyo/ccstudio-ide:${{ matrix.version }} \
+            "projects/f28335_v${{ matrix.version }}" \
+            "f28335_v${{ matrix.version }}" \
+            "${{ matrix.config }}" \
+            "false"
 
       - name: Verify Build Output
         id: verify
