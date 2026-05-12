@@ -7,12 +7,9 @@ PROJECT_DIR="projects/${PROJECT_NAME}"
 
 echo "=== Generating project: $PROJECT_NAME ==="
 
-# Docker 이미지 존재 확인
-if ! docker pull "uoohyo/ccstudio-ide:${VERSION}" 2>/dev/null; then
-  echo "❌ Docker image not found: uoohyo/ccstudio-ide:${VERSION}"
-  echo "   Skipping project generation for this version"
-  exit 0
-fi
+# Docker 이미지 pull
+echo "Pulling Docker image: uoohyo/ccstudio-ide:${VERSION}"
+docker pull "uoohyo/ccstudio-ide:${VERSION}"
 
 # 프로젝트 디렉토리 생성
 mkdir -p "$PROJECT_DIR"
@@ -36,37 +33,17 @@ docker run --rm \
       -ccs.kind executable \
       -ccs.cgtVersion AUTO \
       -ccs.location /workspace/${PROJECT_DIR}
-  " || {
-    echo "⚠️  CCS CLI failed, falling back to template-based generation"
-
-    # Fallback: 템플릿 기반 생성
-    # 가장 가까운 버전 찾기
-    MAJOR_VERSION=$(echo "$VERSION" | cut -d. -f1)
-    CLOSEST_VERSION=$(ls projects/ | grep "^f28335_v${MAJOR_VERSION}\." | head -1 | sed 's/f28335_v//')
-
-    if [ -z "$CLOSEST_VERSION" ]; then
-      # 메이저 버전이 없으면 전체에서 가장 가까운 버전 찾기
-      CLOSEST_VERSION=$(ls projects/ | grep '^f28335_v' | head -1 | sed 's/f28335_v//')
-    fi
-
-    echo "Using template from v${CLOSEST_VERSION}"
-    cp -r "projects/f28335_v${CLOSEST_VERSION}"/* "${PROJECT_DIR}/"
-
-    # 프로젝트 이름 변경
-    sed -i "s/f28335_v${CLOSEST_VERSION}/${PROJECT_NAME}/g" "${PROJECT_DIR}/.project" || \
-      sed -i "" "s/f28335_v${CLOSEST_VERSION}/${PROJECT_NAME}/g" "${PROJECT_DIR}/.project"
-  }
+  "
 
 # main.c와 linker script 복사
+echo "Copying template files..."
 cp templates/main.c "${PROJECT_DIR}/"
-cp templates/28335_RAM_lnk.cmd "${PROJECT_DIR}/" || true
+cp templates/28335_RAM_lnk.cmd "${PROJECT_DIR}/"
 
-# .ccsproject 버전 정보 업데이트 (Docker가 생성한 경우)
+# .ccsproject 버전 정보 업데이트
 if [ -f "${PROJECT_DIR}/.ccsproject" ]; then
-  # 버전 정보 추출
+  echo "Updating version information in .ccsproject..."
   IFS='.' read -r MAJOR MINOR PATCH BUILD <<< "$VERSION"
-
-  # XML에서 버전 업데이트
   sed -i "s/value=\"[0-9]*\.[0-9]*\"/value=\"${MAJOR}.${MINOR}\"/g" "${PROJECT_DIR}/.ccsproject" || \
     sed -i "" "s/value=\"[0-9]*\.[0-9]*\"/value=\"${MAJOR}.${MINOR}\"/g" "${PROJECT_DIR}/.ccsproject"
 fi

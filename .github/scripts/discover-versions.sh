@@ -12,10 +12,10 @@ gh api repos/uoohyo/action-ccstudio-ide/releases \
   | sort -V > /tmp/all_versions.txt
 
 echo "Scanning existing projects..."
-ls projects/ 2>/dev/null \
+ls projects/ \
   | grep '^f28335_v' \
   | sed 's/f28335_v//' \
-  | sort -V > /tmp/existing_versions.txt || touch /tmp/existing_versions.txt
+  | sort -V > /tmp/existing_versions.txt
 
 echo "Finding missing versions..."
 comm -23 /tmp/all_versions.txt /tmp/existing_versions.txt > /tmp/missing_versions.txt
