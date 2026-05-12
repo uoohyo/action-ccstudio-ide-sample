@@ -53,11 +53,16 @@ jobs:
       - name: Calculate Differences
         run: |
           echo "=== Calculating differences ==="
+          # Ensure consistent sorting for comm
+          export LC_ALL=C
+          sort /tmp/all_versions.txt -o /tmp/all_versions_sorted.txt
+          sort /tmp/existing_versions.txt -o /tmp/existing_versions_sorted.txt
+
           # New versions (in releases but not in workflows)
-          comm -23 /tmp/all_versions.txt /tmp/existing_versions.txt > /tmp/new_versions.txt
+          comm -23 /tmp/all_versions_sorted.txt /tmp/existing_versions_sorted.txt > /tmp/new_versions.txt
 
           # Removed versions (in workflows but not in releases)
-          comm -13 /tmp/all_versions.txt /tmp/existing_versions.txt > /tmp/removed_versions.txt
+          comm -13 /tmp/all_versions_sorted.txt /tmp/existing_versions_sorted.txt > /tmp/removed_versions.txt
 
           NEW_COUNT=$(wc -l < /tmp/new_versions.txt)
           REMOVED_COUNT=$(wc -l < /tmp/removed_versions.txt)
