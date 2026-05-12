@@ -1,17 +1,17 @@
-# action-ccstudio-ide-sample
+<!-- markdownlint-disable MD033 MD041 -->
+<p align="center">
+  <img src="./.github/action-ccstudio-ide-sample_banner.png" alt="action-ccstudio-ide_banner" width="800" />
+</p>
 
-<!-- markdownlint-disable MD033 -->
-<img src="./.github/action-ccstudio-ide.jpg" width=256 height=256 alt="action-ccstudio-ide" />
-<!-- markdownlint-enable MD033 -->
-
-![GitHub Release](https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide-sample?include_prereleases&logo=github)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/continuous_integration_pipeline.yml?logo=github)
-![Static Badge](https://img.shields.io/badge/C2000-C2000?label=TI%20Product%20Family&color=blue&link=https%3A%2F%2Fwww.ti.com%2Fko-kr%2Fmicrocontrollers-mcus-processors%2Fc2000-real-time-control-mcus%2Foverview.html)
-![Static Badge](https://img.shields.io/badge/TMS320F28377S-TMS320F28377S?label=TI%20Product&color=blue&link=https%3A%2F%2Fwww.ti.com%2Fproduct%2Fko-kr%2FTMS320F28377S)
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide-sample?include_prereleases&logo=github" alt="GitHub Release" />
+  <img src="https://img.shields.io/badge/C2000-C2000?label=TI%20Product%20Family&color=blue" alt="TI Product Family" />
+  <img src="https://img.shields.io/badge/TMS320F28335-TMS320F28335?label=TI%20Product&color=blue" alt="TI Product" />
+</p>
 
 This is an example of using the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) action to build a project in [Code Composer Studio](https://www.ti.com/tool/CCSTUDIO) and deploy the build artifacts, thus utilizing Continuous Integration (CI).
 
-This example is written targeting the [TMS320F28377S](https://www.ti.com/product/ko-kr/TMS320F28377S) DSP, which is part of the [C2000™ Real-time Control MCU](https://www.ti.com/ko-kr/microcontrollers-mcus-processors/c2000-real-time-control-mcus/overview.html) product family from [Texas Instruments Inc.](https://www.ti.com/)
+This example includes 48 different project versions targeting the [TMS320F28335](https://www.ti.com/product/TMS320F28335) DSP, which is part of the [C2000™ Real-time Control MCU](https://www.ti.com/ko-kr/microcontrollers-mcus-processors/c2000-real-time-control-mcus/overview.html) product family from [Texas Instruments Inc.](https://www.ti.com/). These projects span from CCS v7.0.0 to v20.5.1, enabling comprehensive compatibility testing across multiple CCS versions.
 
 ## License
 
