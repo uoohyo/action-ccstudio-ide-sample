@@ -1,0 +1,70 @@
+name: Test CCS v10.4.0.00006
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config: [Debug, Release]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Build with CCS v10.4.0.00006 - ${{ matrix.config }}
+        id: build
+        uses: uoohyo/action-ccstudio-ide@v10.4.0.00006
+        continue-on-error: true
+        with:
+          project-path: 'projects/f28335_v10.4.0.00006'
+          project-name: 'f28335_v10.4.0.00006'
+          build-config: ${{ matrix.config }}
+          components: 'PF_C28'
+
+      - name: Verify Build Output
+        id: verify
+        run: |
+          OUTPUT_PATH="projects/f28335_v10.4.0.00006/${{ matrix.config }}/f28335_v10.4.0.00006.out"
+          if [ -f "$OUTPUT_PATH" ]; then
+            echo "✅ Build successful: $OUTPUT_PATH"
+            ls -lh "$OUTPUT_PATH"
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Build failed: Output file not found"
+            echo "status=failure" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Save Test Result
+        if: always() && matrix.config == 'Debug'
+        run: |
+          STATUS="${{ steps.verify.outputs.status || 'failure' }}"
+          LOG_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          mkdir -p .github/test-results
+          cat > .github/test-results/10.4.0.00006.json <<EOF
+          {
+            "version": "10.4.0.00006",
+            "status": "$STATUS",
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "log_url": "$LOG_URL"
+          }
+          EOF
+
+      - name: Upload Test Result
+        if: always() && matrix.config == 'Debug'
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-result-10.4.0.00006
+          path: .github/test-results/10.4.0.00006.json
+          retention-days: 90
