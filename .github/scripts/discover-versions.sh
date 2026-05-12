@@ -32,13 +32,12 @@ if [ "$MISSING_COUNT" -gt 0 ]; then
   cat /tmp/missing_versions.txt
 fi
 
-# GitHub Actions output으로 내보내기
+# GitHub Actions output으로 내보내기 (JSON array 형식)
+ALL_VERSIONS_JSON=$(cat /tmp/all_versions.txt | jq -R -s -c 'split("\n")[:-1]')
+MISSING_VERSIONS_JSON=$(cat /tmp/missing_versions.txt | jq -R -s -c 'split("\n")[:-1]')
+
 {
-  echo "all_versions<<EOF"
-  cat /tmp/all_versions.txt
-  echo "EOF"
-  echo "missing_versions<<EOF"
-  cat /tmp/missing_versions.txt
-  echo "EOF"
+  echo "all_versions=${ALL_VERSIONS_JSON}"
+  echo "missing_versions=${MISSING_VERSIONS_JSON}"
   echo "missing_count=$MISSING_COUNT"
 } >> "$GITHUB_OUTPUT"
