@@ -44,8 +44,7 @@ cp templates/28335_RAM_lnk.cmd "${PROJECT_DIR}/"
 if [ -f "${PROJECT_DIR}/.ccsproject" ]; then
   echo "Updating version information in .ccsproject..."
   IFS='.' read -r MAJOR MINOR PATCH BUILD <<< "$VERSION"
-  sed -i "s/value=\"[0-9]*\.[0-9]*\"/value=\"${MAJOR}.${MINOR}\"/g" "${PROJECT_DIR}/.ccsproject" || \
-    sed -i "" "s/value=\"[0-9]*\.[0-9]*\"/value=\"${MAJOR}.${MINOR}\"/g" "${PROJECT_DIR}/.ccsproject"
+  sed -i "s/value=\"[0-9]*\.[0-9]*\"/value=\"${MAJOR}.${MINOR}\"/g" "${PROJECT_DIR}/.ccsproject"
 fi
 
 echo "✅ Project generated: ${PROJECT_DIR}"

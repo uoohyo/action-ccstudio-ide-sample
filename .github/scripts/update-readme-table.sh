@@ -41,7 +41,7 @@ for dir in projects/f28335_v*; do
     BADGE_URL="https://img.shields.io/badge/build-${BADGE_MESSAGE}-${BADGE_COLOR}"
 
     # 날짜 포맷팅
-    FORMATTED_DATE=$(date -d "$TIMESTAMP" "+%Y-%m-%d" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$TIMESTAMP" "+%Y-%m-%d")
+    FORMATTED_DATE=$(date -d "$TIMESTAMP" "+%Y-%m-%d")
 
     # 테이블 행 추가
     TABLE+="
