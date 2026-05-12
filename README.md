@@ -13,7 +13,62 @@
 <!-- markdownlint-enable MD033 MD041 -->
 
 <!-- TEST_RESULTS_START -->
-<!-- Test results table will be auto-generated here after workflow execution -->
+
+## Test Results
+
+This table shows the build status for all tested CCS versions:
+
+| CCS Version | Build Status | Configurations | Last Updated | Details |
+|-------------|-------------|----------------|--------------|---------|
+| v10.0.0.00010 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.0.0.00010.yml) |
+| v10.1.0.00010 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.1.0.00010.yml) |
+| v10.1.1.00004 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.1.1.00004.yml) |
+| v10.2.0.00009 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.2.0.00009.yml) |
+| v10.3.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.3.0.00007.yml) |
+| v10.3.1.00003 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.3.1.00003.yml) |
+| v10.4.0.00006 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v10.4.0.00006.yml) |
+| v11.0.0.00012 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v11.0.0.00012.yml) |
+| v11.1.0.00011 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v11.1.0.00011.yml) |
+| v11.2.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v11.2.0.00007.yml) |
+| v12.0.0.00009 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.0.0.00009.yml) |
+| v12.1.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.1.0.00007.yml) |
+| v12.2.0.00009 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.2.0.00009.yml) |
+| v12.3.0.00005 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.3.0.00005.yml) |
+| v12.4.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.4.0.00007.yml) |
+| v12.5.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.5.0.00007.yml) |
+| v12.6.0.00008 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.6.0.00008.yml) |
+| v12.7.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.7.0.00007.yml) |
+| v12.7.1.00001 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.7.1.00001.yml) |
+| v12.8.0.00012 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.8.0.00012.yml) |
+| v12.8.1.00005 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v12.8.1.00005.yml) |
+| v20.0.0.00012 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.0.0.00012.yml) |
+| v20.0.1.00004 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.0.1.00004.yml) |
+| v20.0.2.00005 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.0.2.00005.yml) |
+| v20.1.0.00006 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.1.0.00006.yml) |
+| v20.1.1.00008 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.1.1.00008.yml) |
+| v20.2.0.00012 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.2.0.00012.yml) |
+| v20.3.0.00014 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.3.0.00014.yml) |
+| v20.3.1.00005 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.3.1.00005.yml) |
+| v20.4.0.00013 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.4.0.00013.yml) |
+| v20.4.1.00004 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.4.1.00004.yml) |
+| v20.5.0.00028 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.5.0.00028.yml) |
+| v20.5.1.00012 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.5.1.00012.yml) |
+| v7.0.0.00043 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v7.0.0.00043.yml) |
+| v7.1.0.00016 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v7.1.0.00016.yml) |
+| v7.2.0.00013 | ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) | Debug, Release | 2026-05-12 | [Logs](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/25735676237) |
+| v7.3.0.00019 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v7.3.0.00019.yml) |
+| v7.4.0.00015 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v7.4.0.00015.yml) |
+| v8.0.0.00016 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v8.0.0.00016.yml) |
+| v8.1.0.00011 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v8.1.0.00011.yml) |
+| v8.2.0.00007 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v8.2.0.00007.yml) |
+| v8.3.0.00009 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v8.3.0.00009.yml) |
+| v8.3.1.00004 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v8.3.1.00004.yml) |
+| v9.0.0.00018 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v9.0.0.00018.yml) |
+| v9.0.1.00004 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v9.0.1.00004.yml) |
+| v9.1.0.00010 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v9.1.0.00010.yml) |
+| v9.2.0.00013 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v9.2.0.00013.yml) |
+| v9.3.0.00012 | ![Build Status](https://img.shields.io/badge/build-pending-yellow) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v9.3.0.00012.yml) |
+
 <!-- TEST_RESULTS_END -->
 
 This repository provides **comprehensive compatibility testing** for the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action across all released versions.
