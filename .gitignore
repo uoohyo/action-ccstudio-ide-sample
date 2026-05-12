@@ -33,28 +33,25 @@ venv/
 # CCS ignores
 output/
 Debug/
-Debug_Master/
-Debug_Slave_01/
-Debug_Slave_02/
 Release/
-Release_Master/
-Release_Slave_01/
-Release_Slave_02/
 .out/
 .ccxml
 .history/
 .metadata/
 .clangd
 
-# targetConfigs
+# targetConfigs 폴더 무시 (common 제외)
 **/targetConfigs/
+!common/targetConfigs/
 
-# easyDSP
-easyDSP/
-
-# IDE
+# IDE 개인 설정 및 캐시
 .claude/
+.mcp.json
+CLAUDE.md
 .jxbrowser.userdata/
 RemoteSystemsTempFiles/
 dvt/
+
+# 기타
 nul
+%APPDATA%Code

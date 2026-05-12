@@ -1,23 +1,48 @@
-# action-ccstudio-ide-sample
+<!-- markdownlint-disable MD033 MD041 -->
+<p align="center">
+  <img src="./.github/action-ccstudio-ide-sample_banner.png" alt="action-ccstudio-ide_banner" width="800" />
+</p>
 
-<!-- markdownlint-disable MD033 -->
-<img src="./.github/action-ccstudio-ide.jpg" width=256 height=256 alt="action-ccstudio-ide" />
-<!-- markdownlint-enable MD033 -->
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide?logo=github" alt="Latest Release" />
+  <img src="https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-all-versions.yml?branch=main&label=multi-version%20tests" alt="Build Status" />
+  <img src="https://img.shields.io/badge/CCS%20Versions-48%2B-blue" alt="CCS Versions" />
+  <img src="https://img.shields.io/badge/Device-TMS320F28335-orange" alt="Target Device" />
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License" />
+</p>
+<!-- markdownlint-enable MD033 MD041 -->
 
-![GitHub Release](https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide-sample?include_prereleases&logo=github)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/continuous_integration_pipeline.yml?logo=github)
-![Static Badge](https://img.shields.io/badge/C2000-C2000?label=TI%20Product%20Family&color=blue&link=https%3A%2F%2Fwww.ti.com%2Fko-kr%2Fmicrocontrollers-mcus-processors%2Fc2000-real-time-control-mcus%2Foverview.html)
-![Static Badge](https://img.shields.io/badge/TMS320F28377S-TMS320F28377S?label=TI%20Product&color=blue&link=https%3A%2F%2Fwww.ti.com%2Fproduct%2Fko-kr%2FTMS320F28377S)
+<!-- TEST_RESULTS_START -->
+<!-- Test results table will be auto-generated here after workflow execution -->
+<!-- TEST_RESULTS_END -->
 
-This is an example of using the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) action to build a project in [Code Composer Studio](https://www.ti.com/tool/CCSTUDIO) and deploy the build artifacts, thus utilizing Continuous Integration (CI).
+This repository provides **comprehensive compatibility testing** for the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action across all released versions.
 
-This example is written targeting the [TMS320F28377S](https://www.ti.com/product/ko-kr/TMS320F28377S) DSP, which is part of the [C2000™ Real-time Control MCU](https://www.ti.com/ko-kr/microcontrollers-mcus-processors/c2000-real-time-control-mcus/overview.html) product family from [Texas Instruments Inc.](https://www.ti.com/)
+## Purpose
+
+Automatically verify that action-ccstudio-ide works correctly across various versions of Code Composer Studio (CCS). When new CCS versions are released, test projects are automatically generated and build tests are performed.
+
+## Key Features
+
+- **Automated Version Discovery**: Automatically detect new CCS versions via GitHub Releases API
+- **Auto-Generate Projects**: Automatically create test projects for missing versions using Docker + CCS CLI
+- **Comprehensive Testing**: Coverage of 48+ CCS versions (v7.0.0 ~ v20.5.1)
+- **Continuous Integration**: Automatic build testing for all versions on push to main branch
+- **Real-Time Status Dashboard**: Check build status for each version in the table below
+
+## Target Configuration
+
+- **Device**: TMS320F28335 (C2000 family DSP)
+- **Manufacturer**: Texas Instruments Inc.
+- **Output Format**: COFF
+- **Build Configurations**: Debug, Release
+- **Memory Mode**: RAM-based (using 28335_RAM_lnk.cmd)
 
 ## License
 
 [MIT License](./LICENSE)
 
-Copyright (c) 2024 [uoohyo](https://github.com/uoohyo)
+Copyright (c) 2024-2026 [uoohyo](https://github.com/uoohyo)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

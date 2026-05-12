@@ -1,0 +1,172 @@
+name: Test All CCS Versions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    # 매주 월요일 오전 9시(KST) 실행 - 새 버전 체크
+    - cron: '0 0 * * 1'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  discover-and-generate:
+    name: Discover Versions & Generate Projects
+    runs-on: ubuntu-latest
+    outputs:
+      all_versions: ${{ steps.discover.outputs.all_versions }}
+      missing_count: ${{ steps.discover.outputs.missing_count }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Docker
+        run: |
+          docker --version
+
+      - name: Discover Versions
+        id: discover
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x .github/scripts/discover-versions.sh
+          bash .github/scripts/discover-versions.sh
+
+      - name: Generate Missing Projects
+        if: steps.discover.outputs.missing_count > 0
+        run: |
+          chmod +x .github/scripts/generate-project.sh
+          while IFS= read -r version; do
+            echo "Generating project for version: $version"
+            bash .github/scripts/generate-project.sh "$version" || echo "Failed to generate v$version"
+          done < /tmp/missing_versions.txt
+
+      - name: Commit Generated Projects
+        if: steps.discover.outputs.missing_count > 0
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add projects/
+          if git diff --staged --quiet; then
+            echo "No new projects to commit"
+          else
+            git commit -m "feat: auto-generate projects for missing CCS versions [skip ci]"
+            git push
+          fi
+
+  build-all:
+    name: Build CCS v${{ matrix.version }}
+    needs: discover-and-generate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ${{ fromJSON(needs.discover-and-generate.outputs.all_versions) }}
+        config: [Debug, Release]
+      fail-fast: false
+      max-parallel: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Extract Version Components
+        id: version
+        run: |
+          VERSION="${{ matrix.version }}"
+          IFS='.' read -r MAJOR MINOR PATCH BUILD <<< "$VERSION"
+          echo "major=$MAJOR" >> $GITHUB_OUTPUT
+          echo "minor=$MINOR" >> $GITHUB_OUTPUT
+          echo "patch=$PATCH" >> $GITHUB_OUTPUT
+          echo "build=$BUILD" >> $GITHUB_OUTPUT
+
+      - name: Build with CCS v${{ matrix.version }} - ${{ matrix.config }}
+        id: build
+        uses: uoohyo/action-ccstudio-ide@v${{ matrix.version }}
+        continue-on-error: true
+        with:
+          project-path: 'projects/f28335_v${{ matrix.version }}'
+          project-name: 'f28335_v${{ matrix.version }}'
+          build-config: ${{ matrix.config }}
+          components: 'PF_C28'
+          major-ver: ${{ steps.version.outputs.major }}
+          minor-ver: ${{ steps.version.outputs.minor }}
+          patch-ver: ${{ steps.version.outputs.patch }}
+          build-ver: ${{ steps.version.outputs.build }}
+
+      - name: Verify Build Output
+        id: verify
+        run: |
+          OUTPUT_PATH="projects/f28335_v${{ matrix.version }}/${{ matrix.config }}/f28335_v${{ matrix.version }}.out"
+          if [ -f "$OUTPUT_PATH" ]; then
+            echo "✅ Build successful: $OUTPUT_PATH"
+            ls -lh "$OUTPUT_PATH"
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Build failed: Output file not found"
+            echo "status=failure" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Save Test Result
+        if: always() && matrix.config == 'Debug'  # Debug 빌드에서만 결과 저장
+        run: |
+          STATUS="${{ steps.verify.outputs.status || 'failure' }}"
+          LOG_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          chmod +x .github/scripts/save-test-result.sh
+          bash .github/scripts/save-test-result.sh "${{ matrix.version }}" "$STATUS" "$LOG_URL"
+
+      - name: Upload Test Results
+        if: always() && matrix.config == 'Debug'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-result-${{ matrix.version }}
+          path: .github/test-results/${{ matrix.version }}.json
+          retention-days: 90
+
+  update-readme:
+    name: Update README with Results
+    needs: build-all
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download All Test Results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: test-result-*
+          path: .github/test-results/
+          merge-multiple: true
+
+      - name: List Downloaded Results
+        run: |
+          echo "Downloaded test results:"
+          ls -la .github/test-results/
+
+      - name: Update README Table
+        run: |
+          chmod +x .github/scripts/update-readme-table.sh
+          bash .github/scripts/update-readme-table.sh
+
+      - name: Commit README Updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md .github/test-results/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: update test results table [skip ci]"
+            git push
+          fi
