@@ -62,7 +62,7 @@ jobs:
           fi
 
   build-all:
-    name: Build CCS v${{ matrix.version }}
+    name: Build CCS Projects
     needs: discover-and-generate
     runs-on: ubuntu-latest
     strategy:
