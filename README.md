@@ -13,99 +13,99 @@
 
 # Multi-Version CCS Build Testing
 
-이 저장소는 [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action의 **모든 릴리스 버전에 대한 포괄적인 호환성 테스트**를 제공합니다.
+This repository provides **comprehensive compatibility testing** for the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action across all released versions.
 
-## 🎯 목적
+## 🎯 Purpose
 
-Code Composer Studio(CCS)의 다양한 버전에서 action-ccstudio-ide가 정상적으로 작동하는지 자동으로 검증합니다. 새로운 CCS 버전이 릴리스되면 자동으로 테스트 프로젝트를 생성하고 빌드 테스트를 수행합니다.
+Automatically verify that action-ccstudio-ide works correctly across various versions of Code Composer Studio (CCS). When new CCS versions are released, test projects are automatically generated and build tests are performed.
 
-## ✨ 주요 기능
+## ✨ Key Features
 
-- **자동 버전 발견**: GitHub Releases API를 통해 새 CCS 버전 자동 감지
-- **프로젝트 자동 생성**: 누락된 버전의 테스트 프로젝트를 Docker + CCS CLI로 자동 생성
-- **포괄적 테스트**: 48개 이상의 CCS 버전 커버 (v7.0.0 ~ v20.5.1)
-- **지속적 통합**: main 브랜치 푸시 시 모든 버전 자동 빌드 테스트
-- **실시간 상태 대시보드**: 아래 테이블에서 각 버전의 빌드 상태 확인 가능
+- **Automated Version Discovery**: Automatically detect new CCS versions via GitHub Releases API
+- **Auto-Generate Projects**: Automatically create test projects for missing versions using Docker + CCS CLI
+- **Comprehensive Testing**: Coverage of 48+ CCS versions (v7.0.0 ~ v20.5.1)
+- **Continuous Integration**: Automatic build testing for all versions on push to main branch
+- **Real-Time Status Dashboard**: Check build status for each version in the table below
 
-## 🔧 타겟 구성
+## 🔧 Target Configuration
 
-- **디바이스**: TMS320F28335 (C2000 family DSP)
-- **제조사**: Texas Instruments Inc.
-- **출력 형식**: COFF
-- **빌드 구성**: Debug, Release
-- **메모리 모드**: RAM 기반 (28335_RAM_lnk.cmd 사용)
+- **Device**: TMS320F28335 (C2000 family DSP)
+- **Manufacturer**: Texas Instruments Inc.
+- **Output Format**: COFF
+- **Build Configurations**: Debug, Release
+- **Memory Mode**: RAM-based (using 28335_RAM_lnk.cmd)
 
-## 📁 프로젝트 구조
+## 📁 Project Structure
 
 ```text
 action-ccstudio-ide-sample/
 ├── .github/
 │   ├── workflows/
-│   │   └── test-all-versions.yml    # 메인 테스트 워크플로우
+│   │   └── test-all-versions.yml    # Main test workflow
 │   ├── scripts/
-│   │   ├── discover-versions.sh     # 버전 발견
-│   │   ├── generate-project.sh      # 프로젝트 생성
-│   │   ├── save-test-result.sh      # 테스트 결과 저장
-│   │   └── update-readme-table.sh   # README 업데이트
-│   └── test-results/                # 테스트 결과 JSON 파일
-├── projects/                         # CCS 프로젝트들
+│   │   ├── discover-versions.sh     # Version discovery
+│   │   ├── generate-project.sh      # Project generation
+│   │   ├── save-test-result.sh      # Test result storage
+│   │   └── update-readme-table.sh   # README updater
+│   └── test-results/                # Test result JSON files
+├── projects/                         # CCS projects
 │   ├── f28335_v7.0.0.00043/
 │   ├── f28335_v12.8.1.00005/
 │   ├── f28335_v20.5.1.00012/
 │   └── ...
-└── templates/                        # 프로젝트 생성 템플릿
+└── templates/                        # Project generation templates
     ├── main.c
     └── 28335_RAM_lnk.cmd
 ```
 
 <!-- TEST_RESULTS_START -->
-<!-- 워크플로우 실행 후 여기에 테스트 결과 테이블이 자동 생성됩니다 -->
+<!-- Test results table will be auto-generated here after workflow execution -->
 <!-- TEST_RESULTS_END -->
 
-## 🚀 사용 방법
+## 🚀 Usage
 
-### 전체 테스트 실행
+### Run All Tests
 
 ```bash
 gh workflow run test-all-versions.yml
 ```
 
-### 특정 버전 수동 테스트
+### Manual Test for Specific Version
 
 ```bash
-# 1. 프로젝트 생성 (없는 경우)
+# 1. Generate project (if not exists)
 bash .github/scripts/generate-project.sh "12.0.0.00009"
 
-# 2. 워크플로우 트리거 (해당 버전만 빌드됨)
+# 2. Trigger workflow (builds only that version)
 git add projects/
 git commit -m "add: CCS v12.0.0.00009 project"
 git push
 ```
 
-## 🔄 워크플로우 동작 방식
+## 🔄 How It Works
 
-1. **버전 발견**: GitHub Releases API로 action-ccstudio-ide의 모든 릴리스 조회
-2. **갭 감지**: 기존 `./projects/` 폴더와 비교하여 누락된 버전 식별
-3. **프로젝트 생성**: Docker 컨테이너에서 CCS CLI로 누락된 버전의 프로젝트 생성
-4. **빌드 테스트**: Matrix 전략으로 모든 버전을 병렬 빌드 (Debug + Release)
-5. **결과 저장**: 각 버전의 빌드 결과를 JSON 파일로 저장
-6. **README 업데이트**: 테스트 결과 테이블을 자동으로 갱신
+1. **Version Discovery**: Query all releases from action-ccstudio-ide via GitHub Releases API
+2. **Gap Detection**: Compare with existing `./projects/` folder to identify missing versions
+3. **Project Generation**: Create projects for missing versions using CCS CLI in Docker containers
+4. **Build Testing**: Parallel builds for all versions using matrix strategy (Debug + Release)
+5. **Result Storage**: Save build results for each version as JSON files
+6. **README Update**: Automatically update test results table
 
-## 🤝 기여하기
+## 🤝 Contributing
 
-새로운 CCS 버전 지원을 추가하려면:
+To add support for a new CCS version:
 
-1. `uoohyo/action-ccstudio-ide`에서 해당 버전이 릴리스되었는지 확인
-2. main 브랜치에 푸시 → 시스템이 자동으로 프로젝트 생성 및 테스트
-3. 또는 수동으로 프로젝트 생성: `bash .github/scripts/generate-project.sh "X.X.X.XXXXX"`
+1. Verify the version is released in `uoohyo/action-ccstudio-ide`
+2. Push to main branch → System automatically generates project and runs tests
+3. Or manually generate project: `bash .github/scripts/generate-project.sh "X.X.X.XXXXX"`
 
-## 📊 테스트 일정
+## 📊 Test Schedule
 
-- **자동 트리거**: main 브랜치 푸시 시
-- **주기적 테스트**: 매주 월요일 오전 9시(KST)
-- **수동 실행**: GitHub Actions 탭에서 언제든지 가능
+- **Automatic Trigger**: On push to main branch
+- **Periodic Testing**: Every Monday at 9 AM KST
+- **Manual Execution**: Anytime from GitHub Actions tab
 
-## 📝 라이선스
+## 📝 License
 
 [MIT License](./LICENSE)
 
