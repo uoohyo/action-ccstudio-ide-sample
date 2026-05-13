@@ -35,15 +35,24 @@ jobs:
         id: verify
         run: |
           OUTPUT_PATH="projects/f28335_v9.0.1.00004/${{ matrix.config }}/f28335_v9.0.1.00004.out"
-          if [ -f "$OUTPUT_PATH" ]; then
-            echo "✅ Build successful: $OUTPUT_PATH"
-            ls -lh "$OUTPUT_PATH"
-            echo "status=success" >> $GITHUB_OUTPUT
-          else
-            echo "❌ Build failed: Output file not found"
-            echo "status=failure" >> $GITHUB_OUTPUT
-            exit 1
-          fi
+
+          for attempt in 1 2 3; do
+            if [ -f "$OUTPUT_PATH" ]; then
+              echo "✅ Build successful: $OUTPUT_PATH"
+              ls -lh "$OUTPUT_PATH"
+              echo "status=success" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            if [ $attempt -lt 3 ]; then
+              echo "⏳ Output file not found, waiting... (attempt $attempt/3)"
+              sleep $((attempt * 2))
+            fi
+          done
+
+          echo "❌ Build failed: Output file not found after 3 attempts"
+          echo "status=failure" >> $GITHUB_OUTPUT
+          exit 1
 
       - name: Save Test Result
         if: always() && matrix.config == 'Debug'
