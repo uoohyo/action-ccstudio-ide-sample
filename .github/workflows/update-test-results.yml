@@ -58,6 +58,19 @@ jobs:
               || echo "No artifacts found for run $run_id"
           done < /tmp/test_run_ids.txt
 
+      - name: Flatten Test Results Directory
+        if: steps.find-runs.outputs.run_count > 0
+        run: |
+          echo "=== Flattening test results directory ==="
+          # Move all JSON files from subdirectories to parent directory
+          find .github/test-results/ -type f -name '*.json' -exec mv {} .github/test-results/ \;
+
+          # Remove empty subdirectories
+          find .github/test-results/ -type d -empty -delete
+
+          echo "Flattened structure:"
+          ls -la .github/test-results/*.json 2>/dev/null | head -10
+
       - name: List Downloaded Results
         run: |
           echo "=== Downloaded test results ==="
