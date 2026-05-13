@@ -38,17 +38,9 @@ while IFS= read -r VERSION; do
     TIMESTAMP=$(jq -r '.timestamp' "$RESULT_FILE")
     LOG_URL=$(jq -r '.log_url' "$RESULT_FILE")
 
-    # 상태에 따른 배지 색상
-    if [ "$STATUS" = "success" ]; then
-      BADGE_COLOR="brightgreen"
-      BADGE_MESSAGE="passing"
-    else
-      BADGE_COLOR="red"
-      BADGE_MESSAGE="failing"
-    fi
-
-    # shields.io 배지 URL
-    BADGE_URL="https://img.shields.io/badge/build-${BADGE_MESSAGE}-${BADGE_COLOR}"
+    # GitHub Actions workflow status badge
+    WORKFLOW_FILE="test-ccs-v${VERSION}.yml"
+    BADGE_URL="https://img.shields.io/github/actions/workflow/status/${REPO}/${WORKFLOW_FILE}?branch=main&label="
 
     # 날짜 포맷팅
     FORMATTED_DATE=$(date -d "$TIMESTAMP" "+%Y-%m-%d")
@@ -57,9 +49,9 @@ while IFS= read -r VERSION; do
     TABLE+="
 | v${VERSION} | ![Build Status](${BADGE_URL}) | Debug, Release | ${FORMATTED_DATE} | [Logs](${LOG_URL}) |"
   else
-    # 결과 파일이 없으면 미테스트 상태
-    BADGE_URL="https://img.shields.io/badge/build-pending-yellow"
+    # 결과 파일이 없으면 워크플로우 배지 표시
     WORKFLOW_FILE="test-ccs-v${VERSION}.yml"
+    BADGE_URL="https://img.shields.io/github/actions/workflow/status/${REPO}/${WORKFLOW_FILE}?branch=main&label="
     TABLE+="
 | v${VERSION} | ![Build Status](${BADGE_URL}) | Debug, Release | - | [Workflow](${WORKFLOWS_URL}/${WORKFLOW_FILE}) |"
   fi
