@@ -17,9 +17,19 @@ This table shows the build status for all tested CCS versions:
 EOF
 )
 
-# 각 버전에 대한 행 추가
-for dir in projects/f28335_v*; do
-  VERSION=$(basename "$dir" | sed 's/f28335_v//')
+# Check if test results directory exists and has JSON files
+if [ ! -d ".github/test-results" ] || [ -z "$(ls -A .github/test-results/*.json 2>/dev/null)" ]; then
+  echo "⚠️  No test results found. Skipping README update."
+  echo "Run test workflows first, then trigger this workflow manually."
+  echo "Directory exists: $([ -d ".github/test-results" ] && echo 'yes' || echo 'no')"
+  echo "JSON files: $(find .github/test-results/ -name '*.json' 2>/dev/null | wc -l)"
+  exit 0
+fi
+
+# 각 버전에 대한 행 추가 (버전 높은순으로 정렬)
+ls -d projects/f28335_v* | sed 's|projects/f28335_v||' | sort -V -r > /tmp/versions_sorted.txt
+
+while IFS= read -r VERSION; do
   RESULT_FILE=".github/test-results/${VERSION}.json"
 
   if [ -f "$RESULT_FILE" ]; then
@@ -53,7 +63,7 @@ for dir in projects/f28335_v*; do
     TABLE+="
 | v${VERSION} | ![Build Status](${BADGE_URL}) | Debug, Release | - | [Workflow](${WORKFLOWS_URL}/${WORKFLOW_FILE}) |"
   fi
-done
+done < /tmp/versions_sorted.txt
 
 # 테이블 마커 종료
 TABLE+="

@@ -1,41 +1,69 @@
 name: Update Test Results
 
 on:
-  workflow_run:
-    workflows: ["Test CCS v*"]
-    types:
-      - completed
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/test-results/**'
 
 permissions:
   contents: write
   actions: read
 
+concurrency:
+  group: update-readme-results
+  cancel-in-progress: false
+
 jobs:
   update-readme:
     name: Update README Table
     runs-on: ubuntu-latest
-    # Only run if we haven't already run recently (avoid duplicate runs)
-    if: github.event.workflow_run.conclusion != 'skipped'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Download All Test Results
-        uses: actions/download-artifact@v8
-        continue-on-error: true
-        with:
-          pattern: test-result-*
-          path: .github/test-results/
-          merge-multiple: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          run-id: ${{ github.event.workflow_run.id }}
+      - name: Find Recent Test Workflow Runs
+        id: find-runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "=== Finding recent test workflow runs ==="
+          gh run list \
+            --limit 100 \
+            --json databaseId,workflowName,conclusion,createdAt \
+            | jq -r '.[] | select(.workflowName | startswith("Test CCS v")) | select(.conclusion == "success" or .conclusion == "failure") | .databaseId' \
+            > /tmp/test_run_ids.txt
+
+          RUN_COUNT=$(wc -l < /tmp/test_run_ids.txt)
+          echo "Found $RUN_COUNT completed test runs"
+          echo "run_count=$RUN_COUNT" >> $GITHUB_OUTPUT
+
+      - name: Download Test Results from All Runs
+        if: steps.find-runs.outputs.run_count > 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p .github/test-results
+
+          echo "=== Downloading artifacts from all test runs ==="
+          while IFS= read -r run_id; do
+            echo "Downloading artifacts from run $run_id..."
+            gh run download "$run_id" \
+              --pattern 'test-result-*' \
+              --dir .github/test-results/ \
+              || echo "No artifacts found for run $run_id"
+          done < /tmp/test_run_ids.txt
 
       - name: List Downloaded Results
         run: |
           echo "=== Downloaded test results ==="
           if [ -d ".github/test-results" ]; then
             ls -la .github/test-results/
+            echo "Total JSON files: $(find .github/test-results/ -name '*.json' | wc -l)"
           else
             echo "No test results found"
             mkdir -p .github/test-results
