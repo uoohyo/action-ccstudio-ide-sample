@@ -17,6 +17,15 @@ This table shows the build status for all tested CCS versions:
 EOF
 )
 
+# Check if test results directory exists and has JSON files
+if [ ! -d ".github/test-results" ] || [ -z "$(ls -A .github/test-results/*.json 2>/dev/null)" ]; then
+  echo "⚠️  No test results found. Skipping README update."
+  echo "Run test workflows first, then trigger this workflow manually."
+  echo "Directory exists: $([ -d ".github/test-results" ] && echo 'yes' || echo 'no')"
+  echo "JSON files: $(find .github/test-results/ -name '*.json' 2>/dev/null | wc -l)"
+  exit 0
+fi
+
 # 각 버전에 대한 행 추가
 for dir in projects/f28335_v*; do
   VERSION=$(basename "$dir" | sed 's/f28335_v//')
