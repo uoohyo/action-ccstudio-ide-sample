@@ -4,6 +4,7 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide?logo=github" alt="Latest Release" />
   <img src="https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/maintain-test-workflows.yml?branch=main&label=workflow%20sync" alt="Workflow Sync" />
   <img src="https://img.shields.io/badge/CCS%20Versions-48-blue" alt="CCS Versions" />
   <img src="https://img.shields.io/badge/Device-TMS320F28335-orange" alt="Target Device" />
