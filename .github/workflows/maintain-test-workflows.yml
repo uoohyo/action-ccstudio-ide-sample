@@ -101,6 +101,21 @@ jobs:
             echo "✅ Created: .github/workflows/test-ccs-v${version}.yml"
           done < /tmp/new_versions.txt
 
+      - name: Update Existing Workflows from Template
+        run: |
+          echo "=== Updating all existing workflows from template ==="
+
+          while IFS= read -r version; do
+            [ -z "$version" ] && continue
+
+            echo "Updating workflow for v${version}..."
+            sed "s/{{VERSION}}/${version}/g" \
+              .github/templates/test-ccs-template.yml \
+              > .github/workflows/test-ccs-v${version}.yml
+
+            echo "✅ Updated: .github/workflows/test-ccs-v${version}.yml"
+          done < /tmp/all_versions.txt
+
       - name: Remove Workflows for Deleted Versions
         run: |
           echo "=== Removing workflow files for deleted versions ==="
