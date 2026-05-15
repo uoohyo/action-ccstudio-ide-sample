@@ -20,7 +20,7 @@ This table shows the build status for all tested CCS versions:
 
 | CCS Version | Build Status | Configurations | Last Updated | Details |
 |-------------|-------------|----------------|--------------|---------|
-| v20.5.1.00012 | ![Build Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-ccs-v20.5.1.00012.yml?branch=main&label=) | Debug, Release | 2026-05-13 | [Logs](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/25808797327) |
+| v20.5.1.00012 | ![Build Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-ccs-v20.5.1.00012.yml?branch=main&label=) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.5.1.00012.yml) |
 | v20.5.0.00028 | ![Build Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-ccs-v20.5.0.00028.yml?branch=main&label=) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v20.5.0.00028.yml) |
 | v20.4.1.00004 | ![Build Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-ccs-v20.4.1.00004.yml?branch=main&label=) | Debug, Release | 2026-05-13 | [Logs](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/25808797418) |
 | v20.4.0.00013 | ![Build Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-ccs-v20.4.0.00013.yml?branch=main&label=) | Debug, Release | 2026-05-13 | [Logs](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/25808797501) |
