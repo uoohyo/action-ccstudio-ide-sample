@@ -12,6 +12,8 @@
 </p>
 <!-- markdownlint-enable MD033 MD041 -->
 
+This repository provides **comprehensive compatibility testing** for the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action across all released versions.
+
 <!-- TEST_RESULTS_START -->
 
 ## Test Results
@@ -70,8 +72,6 @@ This table shows the build status for all tested CCS versions:
 | v7.0.0.00043 | ![Build Status](https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/test-ccs-v7.0.0.00043.yml?branch=main&label=) | Debug, Release | - | [Workflow](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/workflows/test-ccs-v7.0.0.00043.yml) |
 
 <!-- TEST_RESULTS_END -->
-
-This repository provides **comprehensive compatibility testing** for the [uoohyo/action-ccstudio-ide](https://github.com/marketplace/actions/build-with-code-composer-studio-integrated-development-environment-ide) GitHub Action across all released versions.
 
 ## Purpose
 
