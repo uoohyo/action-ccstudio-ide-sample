@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'projects/f28335_v20.5.0.00028/**'
   workflow_dispatch:
 
 permissions:
