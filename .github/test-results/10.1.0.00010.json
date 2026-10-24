@@ -1,15 +1,18 @@
 {
   "schema_version": 2,
   "version": "10.1.0.00010",
-  "status": "missing",
-  "collection_status": "missing-or-incompatible",
-  "configurations": {},
-  "head_sha": "c9f70cb6e6fc8967035f22b8ecb41cb00180ee0a",
+  "status": "success",
+  "collection_status": "complete",
+  "configurations": {
+    "Release": "success",
+    "Debug": "success"
+  },
+  "head_sha": "ec11786522822e17c9fdc9688eb8cb25bed344b4",
   "branch": "main",
-  "run_id": "40082656351",
+  "run_id": "40117000435",
   "run_attempt": 1,
-  "timestamp": "2026-10-24T09:57:27Z",
-  "collected_at": "2026-10-24T17:46:00Z",
-  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40082656351",
+  "timestamp": "2026-10-24T17:50:45Z",
+  "collected_at": "2026-10-24T17:56:30Z",
+  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000435",
   "workflow_conclusion": "success"
 }
