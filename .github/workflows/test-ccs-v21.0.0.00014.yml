@@ -1,0 +1,66 @@
+name: Test CCS v21.0.0.00014
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/f28335_v21.0.0.00014/**'
+      - '.github/workflows/test-ccs-v21.0.0.00014.yml'
+      - '.github/templates/test-ccs-template.yml'
+      - '.github/scripts/verify_output.py'
+      - '.github/scripts/test_results.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config: [Debug, Release]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Remove previous configuration outputs
+        run: rm -rf -- 'projects/f28335_v21.0.0.00014/${{ matrix.config }}'
+
+      - name: Build with CCS v21.0.0.00014 - ${{ matrix.config }}
+        id: build
+        uses: uoohyo/action-ccstudio-ide@v21.0.0.00014
+        continue-on-error: true
+        with:
+          project-path: 'projects/f28335_v21.0.0.00014'
+          project-name: 'f28335_v21.0.0.00014'
+          build-config: ${{ matrix.config }}
+          components: 'PF_C28'
+
+      - name: Verify Build Output
+        id: verify
+        if: always()
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: |
+          python3 .github/scripts/verify_output.py "$BUILD_OUTCOME" \
+            'projects/f28335_v21.0.0.00014/${{ matrix.config }}' 'projects/f28335_v21.0.0.00014/${{ matrix.config }}/f28335_v21.0.0.00014.out'
+          echo "status=success" >> "$GITHUB_OUTPUT"
+
+      - name: Save Test Result
+        if: always()
+        env:
+          RESULT_STATUS: ${{ steps.verify.outputs.status || 'failure' }}
+        run: python3 .github/scripts/test_results.py save '21.0.0.00014' '${{ matrix.config }}' "$RESULT_STATUS"
+
+      - name: Upload Test Result
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-result-21.0.0.00014-${{ matrix.config }}-attempt-${{ github.run_attempt }}
+          path: .github/test-results/21.0.0.00014-${{ matrix.config }}.json
+          if-no-files-found: error
+          retention-days: 90

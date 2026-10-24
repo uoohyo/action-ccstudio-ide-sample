@@ -4,10 +4,16 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'projects/f28335_v10.1.0.00010/**'
+      - '.github/workflows/test-ccs-v10.1.0.00010.yml'
+      - '.github/templates/test-ccs-template.yml'
+      - '.github/scripts/verify_output.py'
+      - '.github/scripts/test_results.py'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   test:
@@ -21,6 +27,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Remove previous configuration outputs
+        run: rm -rf -- 'projects/f28335_v10.1.0.00010/${{ matrix.config }}'
+
       - name: Build with CCS v10.1.0.00010 - ${{ matrix.config }}
         id: build
         uses: uoohyo/action-ccstudio-ide@v10.1.0.00010
@@ -33,47 +42,25 @@ jobs:
 
       - name: Verify Build Output
         id: verify
+        if: always()
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
         run: |
-          OUTPUT_PATH="projects/f28335_v10.1.0.00010/${{ matrix.config }}/f28335_v10.1.0.00010.out"
-
-          for attempt in 1 2 3; do
-            if [ -f "$OUTPUT_PATH" ]; then
-              echo "✅ Build successful: $OUTPUT_PATH"
-              ls -lh "$OUTPUT_PATH"
-              echo "status=success" >> $GITHUB_OUTPUT
-              exit 0
-            fi
-
-            if [ $attempt -lt 3 ]; then
-              echo "⏳ Output file not found, waiting... (attempt $attempt/3)"
-              sleep $((attempt * 2))
-            fi
-          done
-
-          echo "❌ Build failed: Output file not found after 3 attempts"
-          echo "status=failure" >> $GITHUB_OUTPUT
-          exit 1
+          python3 .github/scripts/verify_output.py "$BUILD_OUTCOME" \
+            'projects/f28335_v10.1.0.00010/${{ matrix.config }}' 'projects/f28335_v10.1.0.00010/${{ matrix.config }}/f28335_v10.1.0.00010.out'
+          echo "status=success" >> "$GITHUB_OUTPUT"
 
       - name: Save Test Result
-        if: always() && matrix.config == 'Debug'
-        run: |
-          STATUS="${{ steps.verify.outputs.status || 'failure' }}"
-          LOG_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-
-          mkdir -p .github/test-results
-          cat > .github/test-results/10.1.0.00010.json <<EOF
-          {
-            "version": "10.1.0.00010",
-            "status": "$STATUS",
-            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-            "log_url": "$LOG_URL"
-          }
-          EOF
+        if: always()
+        env:
+          RESULT_STATUS: ${{ steps.verify.outputs.status || 'failure' }}
+        run: python3 .github/scripts/test_results.py save '10.1.0.00010' '${{ matrix.config }}' "$RESULT_STATUS"
 
       - name: Upload Test Result
-        if: always() && matrix.config == 'Debug'
+        if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: test-result-10.1.0.00010
-          path: .github/test-results/10.1.0.00010.json
+          name: test-result-10.1.0.00010-${{ matrix.config }}-attempt-${{ github.run_attempt }}
+          path: .github/test-results/10.1.0.00010-${{ matrix.config }}.json
+          if-no-files-found: error
           retention-days: 90
