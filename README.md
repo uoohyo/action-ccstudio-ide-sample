@@ -22,30 +22,30 @@ Results below refer to the linked completed main-branch run, not a moving branch
 
 | Version | Recorded status | Debug / Release | Commit | Run updated (UTC) | Details |
 |---|---|---|---|---|---|
-| v21.0.1.00010 | success | success / success | ec1178652282 | 2026-10-24T17:49:34Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000423) |
-| v21.0.0.00014 | success | success / success | ec1178652282 | 2026-10-24T17:50:31Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000442) |
-| v20.5.1.00012 | success | success / success | ec1178652282 | 2026-10-24T17:41:49Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000234) |
-| v20.5.0.00028 | success | success / success | ec1178652282 | 2026-10-24T17:41:28Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000305) |
-| v20.4.1.00004 | success | success / success | ec1178652282 | 2026-10-24T17:41:19Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000325) |
-| v20.4.0.00013 | success | success / success | ec1178652282 | 2026-10-24T17:45:08Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000366) |
-| v20.3.1.00005 | success | success / success | ec1178652282 | 2026-10-24T17:41:36Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000245) |
-| v20.3.0.00014 | success | success / success | ec1178652282 | 2026-10-24T17:49:02Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000349) |
-| v20.2.0.00012 | success | success / success | ec1178652282 | 2026-10-24T17:41:27Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000279) |
-| v20.1.1.00008 | success | success / success | ec1178652282 | 2026-10-24T17:46:22Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000381) |
-| v20.1.0.00006 | success | success / success | ec1178652282 | 2026-10-24T17:44:21Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000374) |
-| v20.0.2.00005 | success | success / success | ec1178652282 | 2026-10-24T17:49:06Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000427) |
-| v20.0.1.00004 | success | success / success | ec1178652282 | 2026-10-24T17:44:48Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000365) |
-| v20.0.0.00012 | success | success / success | ec1178652282 | 2026-10-24T17:41:03Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000218) |
-| v12.8.1.00005 | success | success / success | ec1178652282 | 2026-10-24T17:42:46Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000297) |
-| v12.8.0.00012 | success | success / success | ec1178652282 | 2026-10-24T17:47:26Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000373) |
-| v12.7.1.00001 | success | success / success | ec1178652282 | 2026-10-24T17:51:39Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000434) |
-| v12.7.0.00007 | success | success / success | ec1178652282 | 2026-10-24T17:52:14Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000424) |
-| v12.6.0.00008 | success | success / success | ec1178652282 | 2026-10-24T17:42:54Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000307) |
-| v12.5.0.00007 | success | success / success | ec1178652282 | 2026-10-24T17:42:54Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000243) |
-| v12.4.0.00007 | success | success / success | ec1178652282 | 2026-10-24T17:42:50Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000242) |
-| v12.3.0.00005 | success | success / success | ec1178652282 | 2026-10-24T17:47:09Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000376) |
+| v21.0.1.00010 | success | success / success | d2b2ff9db541 | 2026-10-24T18:14:47Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40119543871) |
+| v21.0.0.00014 | success | success / success | d2b2ff9db541 | 2026-10-24T20:28:02Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129646561) |
+| v20.5.1.00012 | success | success / success | d2b2ff9db541 | 2026-10-24T20:29:17Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129691802) |
+| v20.5.0.00028 | success | success / success | d2b2ff9db541 | 2026-10-24T20:29:39Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129730783) |
+| v20.4.1.00004 | success | success / success | d2b2ff9db541 | 2026-10-24T20:30:14Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129785542) |
+| v20.4.0.00013 | success | success / success | d2b2ff9db541 | 2026-10-24T20:30:15Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129805195) |
+| v20.3.1.00005 | success | success / success | d2b2ff9db541 | 2026-10-24T20:30:51Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129840016) |
+| v20.3.0.00014 | success | success / success | d2b2ff9db541 | 2026-10-24T20:31:25Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129867318) |
+| v20.2.0.00012 | success | success / success | d2b2ff9db541 | 2026-10-24T20:31:24Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129887144) |
+| v20.1.1.00008 | success | success / success | d2b2ff9db541 | 2026-10-24T20:31:14Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129905325) |
+| v20.1.0.00006 | success | success / success | d2b2ff9db541 | 2026-10-24T20:31:45Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129936240) |
+| v20.0.2.00005 | success | success / success | d2b2ff9db541 | 2026-10-24T20:32:08Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129959400) |
+| v20.0.1.00004 | success | success / success | d2b2ff9db541 | 2026-10-24T20:32:12Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129977026) |
+| v20.0.0.00012 | success | success / success | d2b2ff9db541 | 2026-10-24T20:32:31Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40129993459) |
+| v12.8.1.00005 | success | success / success | d2b2ff9db541 | 2026-10-24T20:49:46Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131170597) |
+| v12.8.0.00012 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:03Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131180167) |
+| v12.7.1.00001 | success | success / success | d2b2ff9db541 | 2026-10-24T20:49:34Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131191654) |
+| v12.7.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T18:56:40Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40122638772) |
+| v12.6.0.00008 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:40Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131223056) |
+| v12.5.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:51:04Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131234331) |
+| v12.4.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:50Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131244549) |
+| v12.3.0.00005 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:46Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131255896) |
 | v12.2.0.00009 | success | success / success | ec1178652282 | 2026-10-24T17:47:05Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000392) |
-| v12.1.0.00007 | success | success / success | ec1178652282 | 2026-10-24T17:42:47Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000320) |
+| v12.1.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:42Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131288232) |
 | v12.0.0.00009 | success | success / success | ec1178652282 | 2026-10-24T17:49:06Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000353) |
 | v11.2.0.00007 | success | success / success | ec1178652282 | 2026-10-24T17:47:48Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000364) |
 | v11.1.0.00011 | success | success / success | ec1178652282 | 2026-10-24T17:52:06Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000411) |
@@ -71,7 +71,7 @@ Results below refer to the linked completed main-branch run, not a moving branch
 | v7.3.0.00019 | success | success / success | ec1178652282 | 2026-10-24T17:55:55Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000449) |
 | v7.2.0.00013 | success | success / success | ec1178652282 | 2026-10-24T17:51:11Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000319) |
 | v7.1.0.00016 | success | success / success | ec1178652282 | 2026-10-24T17:49:34Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000344) |
-| v7.0.0.00043 | success | success / success | ec1178652282 | 2026-10-24T17:52:13Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000398) |
+| v7.0.0.00043 | success | success / success | d2b2ff9db541 | 2026-10-24T19:04:07Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40123222551) |
 
 <!-- TEST_RESULTS_END -->
 
