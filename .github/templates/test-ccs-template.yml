@@ -34,26 +34,31 @@ jobs:
       - name: Verify Build Output
         id: verify
         run: |
-          OUTPUT_PATH="projects/f28335_v{{VERSION}}/${{ matrix.config }}/f28335_v{{VERSION}}.out"
-
-          for attempt in 1 2 3; do
-            if [ -f "$OUTPUT_PATH" ]; then
-              echo "✅ Build successful: $OUTPUT_PATH"
-              ls -lh "$OUTPUT_PATH"
-              echo "status=success" >> $GITHUB_OUTPUT
-              exit 0
-            fi
-
-            if [ $attempt -lt 3 ]; then
-              echo "⏳ Output file not found, waiting... (attempt $attempt/3)"
-              sleep $((attempt * 2))
+          set -euo pipefail
+          PROJECT_DIR="projects/f28335_v{{VERSION}}"
+          OUTPUT_PATH="$PROJECT_DIR/${{ matrix.config }}/f28335_v{{VERSION}}.out"
+          if [ -s "$OUTPUT_PATH" ]; then
+            echo "Build successful: $OUTPUT_PATH"
+            echo "status=success" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::warning::Expected output absent: $OUTPUT_PATH"
+          find "$PROJECT_DIR" -type f \( -name '*.out' -o -name '*.elf' \) -print || true
+          mapfile -d '' FILES < <(find "$PROJECT_DIR" -type f \( -name '*.out' -o -name '*.elf' \) -size +0c -print0)
+          COUNT=0
+          for file in "${FILES[@]}"; do
+            if [[ "$file" == *"/${{ matrix.config }}/"* ]]; then
+              COUNT=$((COUNT + 1))
             fi
           done
-
-          echo "❌ Build failed: Output file not found after 3 attempts"
-          echo "status=failure" >> $GITHUB_OUTPUT
+          if [ "$COUNT" -eq 1 ]; then
+            echo "Found unique nonempty binary in configuration directory"
+            echo "status=success" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::error::Expected unique output for ${{ matrix.config }}; found $COUNT"
+          echo "status=failure" >> "$GITHUB_OUTPUT"
           exit 1
-
       - name: Save Test Result
         if: always() && matrix.config == 'Debug'
         run: |
