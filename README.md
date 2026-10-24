@@ -6,7 +6,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/v/release/uoohyo/action-ccstudio-ide?logo=github" alt="Latest Release" />
   <img src="https://img.shields.io/github/actions/workflow/status/uoohyo/action-ccstudio-ide-sample/sync-test-workflows.yml?branch=main&label=workflow%20sync" alt="Workflow Sync" />
-  <img src="https://img.shields.io/badge/CCS%20Versions-48-blue" alt="CCS Versions" />
+  <img src="https://img.shields.io/badge/CCS%20Versions-See%20results-blue" alt="CCS Versions" />
   <img src="https://img.shields.io/badge/Device-TMS320F28335-orange" alt="Target Device" />
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License" />
 </p>
@@ -83,9 +83,9 @@ Automatically verify that action-ccstudio-ide works correctly across various ver
 
 - **Automated Version Discovery**: Automatically detect new CCS versions via GitHub Releases API
 - **Auto-Generate Projects**: Automatically create test projects for missing versions using Docker + CCS CLI
-- **Comprehensive Testing**: Coverage of 48+ CCS versions (v7.0.0 ~ v20.5.1)
-- **Continuous Integration**: Automatic build testing for all versions on push to main branch
-- **Real-Time Status Dashboard**: Check build status for each version in the table below
+- **Versioned Testing**: F28335/PF_C28 coverage for the exact CCS versions listed in the Test Results table
+- **Continuous Integration**: Test affected versions after relevant project, workflow, template, or helper changes on main
+- **Run-Bound Results**: Check the recorded main-branch run, commit, and Debug/Release outcomes in the table
 
 ## Target Configuration
 

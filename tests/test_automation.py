@@ -121,6 +121,12 @@ class OutputTests(unittest.TestCase):
         with self.assertRaises(ValueError): outputs.verify('success', self.directory, self.directory/'expected.out')
 
 class GeneratedWorkflowTests(unittest.TestCase):
+    def test_readme_does_not_hardcode_version_coverage(self):
+        readme = (ROOT/'README.md').read_text()
+        self.assertIn('CCS%20Versions-See%20results-blue', readme)
+        self.assertNotIn('Coverage of 48+', readme)
+        self.assertIn('exact CCS versions listed in the Test Results table', readme)
+
     def test_result_refresh_uses_current_main_on_rerun(self):
         workflow = (ROOT/'.github/workflows/sync-test-results.yml').read_text()
         checkout = workflow.split('uses: actions/checkout@v6', 1)[1].split('      - name:', 1)[0]
