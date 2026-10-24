@@ -7,12 +7,12 @@
     "Release": "success",
     "Debug": "success"
   },
-  "head_sha": "ec11786522822e17c9fdc9688eb8cb25bed344b4",
+  "head_sha": "d2b2ff9db5413a267bd458ef3b9b2023e5f75a77",
   "branch": "main",
-  "run_id": "40117000364",
+  "run_id": "40131310931",
   "run_attempt": 1,
-  "timestamp": "2026-10-24T17:47:48Z",
-  "collected_at": "2026-10-24T20:51:04Z",
-  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000364",
+  "timestamp": "2026-10-24T20:51:32Z",
+  "collected_at": "2026-10-24T21:08:30Z",
+  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131310931",
   "workflow_conclusion": "success"
 }
