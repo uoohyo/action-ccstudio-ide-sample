@@ -1,6 +1,18 @@
 {
+  "schema_version": 2,
   "version": "8.3.1.00004",
   "status": "success",
-  "timestamp": "2026-10-24T09:47:45Z",
-  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40082656445"
+  "collection_status": "complete",
+  "configurations": {
+    "Debug": "success",
+    "Release": "success"
+  },
+  "head_sha": "ec11786522822e17c9fdc9688eb8cb25bed344b4",
+  "branch": "main",
+  "run_id": "40117000233",
+  "run_attempt": 1,
+  "timestamp": "2026-10-24T17:44:46Z",
+  "collected_at": "2026-10-24T17:47:06Z",
+  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40117000233",
+  "workflow_conclusion": "success"
 }

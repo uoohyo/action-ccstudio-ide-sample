@@ -1,6 +1,8 @@
 {
+  "schema_version": 2,
   "version": "21.0.1.00010",
-  "status": "success",
-  "timestamp": "2026-10-20T10:54:53Z",
-  "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/39409989217"
+  "status": "missing",
+  "collection_status": "not-run",
+  "configurations": {},
+  "collected_at": "2026-10-24T17:46:53Z"
 }
