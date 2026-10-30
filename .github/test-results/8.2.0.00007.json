@@ -4,15 +4,15 @@
   "status": "success",
   "collection_status": "complete",
   "configurations": {
-    "Release": "success",
-    "Debug": "success"
+    "Debug": "success",
+    "Release": "success"
   },
   "head_sha": "0b3ee7d0fda2f6dca3afcf189be11044d7df5f9a",
   "branch": "main",
   "run_id": "40132013966",
   "run_attempt": 1,
   "timestamp": "2026-10-24T21:02:24Z",
-  "collected_at": "2026-10-29T22:46:31Z",
+  "collected_at": "2026-10-30T05:50:46Z",
   "log_url": "https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40132013966",
   "workflow_conclusion": "success"
 }
