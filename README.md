@@ -44,7 +44,7 @@ Results below refer to the linked completed main-branch run, not a moving branch
 | v12.5.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:51:04Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131234331) |
 | v12.4.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:50Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131244549) |
 | v12.3.0.00005 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:46Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131255896) |
-| v12.2.0.00009 | success | success / success | d2b2ff9db541 | 2026-10-24T20:51:08Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131267396) |
+| v12.2.0.00009 | missing | missing / missing | d2b2ff9db541 | 2026-10-24T20:51:08Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131267396) |
 | v12.1.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:50:42Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131288232) |
 | v12.0.0.00009 | success | success / success | d2b2ff9db541 | 2026-10-24T20:51:32Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131299096) |
 | v11.2.0.00007 | success | success / success | d2b2ff9db541 | 2026-10-24T20:51:32Z | [Run](https://github.com/uoohyo/action-ccstudio-ide-sample/actions/runs/40131310931) |
